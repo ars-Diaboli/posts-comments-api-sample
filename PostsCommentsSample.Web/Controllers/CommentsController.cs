@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using PostsCommentsSample.Data.Filters;
 using PostsCommentsSample.Data.Models;
 using PostsCommentsSample.Domain.Services;
+using PostsCommentsSample.Web.Framework;
 using PostsCommentsSample.Web.ViewModels;
 
 namespace PostsCommentsSample.Web.Controllers
@@ -38,6 +39,7 @@ namespace PostsCommentsSample.Web.Controllers
 
 		// POST api/comments
 		[HttpPost]
+		[ValidateModel]
         public Task Post([FromBody]CommentViewModel comment)
         {
 	        return _commentsService.CreateComment(map(comment));
@@ -45,7 +47,8 @@ namespace PostsCommentsSample.Web.Controllers
 
 		// PUT api/comments/5
 		[HttpPut("{id}")]
-        public Task Put(int id, [FromBody]CommentViewModel comment)
+		[ValidateModel]
+		public Task Put(int id, [FromBody]CommentViewModel comment)
 		{
 			return _commentsService.UpdateComment(id, map(comment));
         }

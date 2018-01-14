@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostsCommentsSample.Domain"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostsCommentsSample.Data", "PostsCommentsSample.Data\PostsCommentsSample.Data.csproj", "{40918DA7-2222-4C19-A9D7-7D758C1630C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostsCommentsSample.Tests", "PostsCommentsSample.Tests\PostsCommentsSample.Tests.csproj", "{DA3B7E81-CBBA-482D-9EFD-1DDC0A38759F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostsCommentsSample.TestHarness", "PostsCommentsSample.TestHarness\PostsCommentsSample.TestHarness.csproj", "{1D8C80FF-89EF-4457-BB73-AEA0E5B07345}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostsCommentsSample.TestHarness", "PostsCommentsSample.TestHarness\PostsCommentsSample.TestHarness.csproj", "{1D8C80FF-89EF-4457-BB73-AEA0E5B07345}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{40918DA7-2222-4C19-A9D7-7D758C1630C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40918DA7-2222-4C19-A9D7-7D758C1630C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40918DA7-2222-4C19-A9D7-7D758C1630C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA3B7E81-CBBA-482D-9EFD-1DDC0A38759F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA3B7E81-CBBA-482D-9EFD-1DDC0A38759F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA3B7E81-CBBA-482D-9EFD-1DDC0A38759F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA3B7E81-CBBA-482D-9EFD-1DDC0A38759F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1D8C80FF-89EF-4457-BB73-AEA0E5B07345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D8C80FF-89EF-4457-BB73-AEA0E5B07345}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D8C80FF-89EF-4457-BB73-AEA0E5B07345}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -4,13 +4,12 @@ using System.Threading.Tasks;
 using PostsCommentsSample.Data.Filters;
 using PostsCommentsSample.Data.Models;
 using PostsCommentsSample.Data.Repositories;
-using PostsCommentsSample.Domain.Models;
 
 namespace PostsCommentsSample.Domain.Services
 {
 	public interface IPostsService
 	{
-		Task<PostDetails> GetPostById(int postId);
+		Task<Post> GetPostById(int postId);
 
 		Task<List<Post>> GetPosts(PostsFilter filter);
 
@@ -32,20 +31,9 @@ namespace PostsCommentsSample.Domain.Services
 			_commentsRepository = commentsRepository;
 		}
 
-		public async Task<PostDetails> GetPostById(int postId)
+		public Task<Post> GetPostById(int postId)
 		{
-			var post = await _postsRepository.GetPostById(postId);
-			if (post != null)
-			{
-				var details = map(post);
-
-				var comments = await _commentsRepository.GetComments(new CommentsFilter {PostId = postId});
-				details.Comments = comments;
-
-				return details;
-			}
-
-			return null;
+			return _postsRepository.GetPostById(postId);
 		}
 
 		public Task<List<Post>> GetPosts(PostsFilter filter)
@@ -71,20 +59,6 @@ namespace PostsCommentsSample.Domain.Services
 		{
 			await _commentsRepository.DeletePostComments(postId);
 			await _postsRepository.DeletePost(postId);
-		}
-
-		private static PostDetails map(Post source)
-		{
-			var destination = new PostDetails();
-
-			destination.PostId = source.PostId;
-			destination.Title = source.Title;
-			destination.Content = source.Content;
-			destination.CreationDate = source.CreationDate;
-			destination.LastUpdateDate = source.LastUpdateDate;
-			destination.OwnerName = source.OwnerName;
-
-			return destination;
 		}
 	}
 }
