@@ -12,16 +12,13 @@
     <PackageReference Include="MSTest.TestAdapter" Version="1.2.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.2.0" />
     <PackageReference Include="nunit" Version="3.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PostsCommentsSample.Data\PostsCommentsSample.Data.csproj" />
     <ProjectReference Include="..\PostsCommentsSample.Domain\PostsCommentsSample.Domain.csproj" />
     <ProjectReference Include="..\PostsCommentsSample.Web\PostsCommentsSample.Web.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

@@ -66,10 +66,8 @@ namespace PostsCommentsSample.Web.Controllers
 
 			destination.PageSize = source.PageSize;
 			destination.PageIndex = source.PageNumber - 1;
-			destination.PostIds = source.PostIds;
 			destination.StartDate = source.StartDate;
 			destination.EndDate = source.EndDate;
-			destination.OwnerName = source.OwnerName;
 
 			return destination;
 		}

@@ -90,12 +90,6 @@ namespace PostsCommentsSample.Data.Repositories
 			if (filter.PostId.HasValue)
 				result = result.Where(c => c.PostId == filter.PostId.Value);
 
-			if (!string.IsNullOrEmpty(filter.OwnerName))
-				result = result.Where(c => 0 == string.Compare(c.OwnerName, filter.OwnerName, StringComparison.InvariantCultureIgnoreCase));
-
-			if (filter.CommentIds != null && filter.CommentIds.Any())
-				result = result.Where(c => filter.CommentIds.Contains(c.CommentId));
-
 			if (filter.StartDate.HasValue)
 				result = result.Where(c => c.CreationDate > filter.StartDate.Value);
 
@@ -109,7 +103,7 @@ namespace PostsCommentsSample.Data.Repositories
 
 		public Task CreateComment(Comment comment)
 		{
-			comment.CommentId = _storage.Max(c => c.CommentId) + 1;
+			comment.CommentId = _storage.Any() ? (_storage.Max(c => c.CommentId) + 1) : 1;
 			comment.CreationDate = DateTime.UtcNow;
 
 			_storage.Add(comment);

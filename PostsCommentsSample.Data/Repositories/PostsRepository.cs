@@ -83,12 +83,6 @@ namespace PostsCommentsSample.Data.Repositories
 
 			IEnumerable<Post> result = _storage.OrderByDescending(p => p.CreationDate);
 
-			if (!string.IsNullOrEmpty(filter.OwnerName))
-				result = result.Where(p => 0 == string.Compare(p.OwnerName, filter.OwnerName, StringComparison.InvariantCultureIgnoreCase));
-
-			if (filter.PostIds != null && filter.PostIds.Any())
-				result = result.Where(p => filter.PostIds.Contains(p.PostId));
-
 			if (filter.StartDate.HasValue)
 				result = result.Where(p => p.CreationDate > filter.StartDate.Value);
 
@@ -102,7 +96,7 @@ namespace PostsCommentsSample.Data.Repositories
 
 		public Task CreatePost(Post post)
 		{
-			post.PostId = _storage.Max(p => p.PostId) + 1;
+			post.PostId = _storage.Any() ? (_storage.Max(p => p.PostId) + 1) : 1;
 			post.CreationDate = DateTime.UtcNow;
 
 			_storage.Add(post);

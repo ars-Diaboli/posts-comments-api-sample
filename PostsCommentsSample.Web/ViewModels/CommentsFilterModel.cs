@@ -11,12 +11,8 @@ namespace PostsCommentsSample.Web.ViewModels
 
 	    public int? PostId { get; set; }
 
-	    public List<int> CommentIds { get; set; }
-
 	    public DateTime? StartDate { get; set; }
 
 	    public DateTime? EndDate { get; set; }
-
-	    public string OwnerName { get; set; }
     }
 }
