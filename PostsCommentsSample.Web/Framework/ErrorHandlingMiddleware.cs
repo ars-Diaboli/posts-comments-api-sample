@@ -3,11 +3,14 @@ using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using NLog;
 
 namespace PostsCommentsSample.Web.Framework
 {
 	public class ErrorHandlingMiddleware
 	{
+		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
 		private readonly RequestDelegate next;
 
 		public ErrorHandlingMiddleware(RequestDelegate next)
@@ -23,6 +26,7 @@ namespace PostsCommentsSample.Web.Framework
 			}
 			catch (Exception ex)
 			{
+				_logger.Error(ex);
 				await HandleExceptionAsync(context, ex);
 			}
 		}
