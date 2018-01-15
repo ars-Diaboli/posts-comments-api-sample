@@ -85,18 +85,21 @@ namespace PostsCommentsSample.Data.Repositories
 
 		public Task<List<Comment>> GetComments(CommentsFilter filter)
 		{
-			IEnumerable<Comment> result = _storage.OrderByDescending(c => c.CreationDate);
+			IEnumerable<Comment> result = _storage;
 
 			if (filter.PostId.HasValue)
 				result = result.Where(c => c.PostId == filter.PostId.Value);
 
 			if (filter.StartDate.HasValue)
-				result = result.Where(c => c.CreationDate > filter.StartDate.Value);
+				result = result.Where(c => c.CreationDate >= filter.StartDate.Value);
 
 			if (filter.EndDate.HasValue)
 				result = result.Where(c => c.CreationDate <= filter.EndDate.Value);
 
-			result = result.Skip(filter.PageSize * filter.PageIndex).Take(filter.PageSize);
+			result = result
+				.OrderByDescending(c => c.CreationDate)
+				.Skip(filter.PageSize * filter.PageIndex)
+				.Take(filter.PageSize);
 
 			return Task.FromResult(result.ToList());
 		}

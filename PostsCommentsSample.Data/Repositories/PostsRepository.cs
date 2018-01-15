@@ -78,18 +78,18 @@ namespace PostsCommentsSample.Data.Repositories
 
 		public Task<List<Post>> GetPosts(PostsFilter filter)
 		{
-			if (filter == null)
-				throw new ArgumentNullException(nameof(filter));
-
-			IEnumerable<Post> result = _storage.OrderByDescending(p => p.CreationDate);
+			IEnumerable<Post> result = _storage;
 
 			if (filter.StartDate.HasValue)
-				result = result.Where(p => p.CreationDate > filter.StartDate.Value);
+				result = result.Where(p => p.CreationDate >= filter.StartDate.Value);
 
 			if (filter.EndDate.HasValue)
 				result = result.Where(p => p.CreationDate <= filter.EndDate.Value);
 
-			result = result.Skip(filter.PageSize * filter.PageIndex).Take(filter.PageSize);
+			result = result
+				.OrderByDescending(p => p.CreationDate)
+				.Skip(filter.PageSize * filter.PageIndex)
+				.Take(filter.PageSize);
 
 			return Task.FromResult(result.ToList());
 		}
